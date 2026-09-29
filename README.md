@@ -8,7 +8,6 @@
 
 PCB Artwork Skill separates visual interpretation from PCB geometry. The agent reads the reference, breaks the design into primitives, and writes a compact artwork plan. Deterministic scripts handle coordinates, clipping, KiCad serialization, and validation.
 
-The first working case was a 57 × 32 mm biomonitor board. Its front silkscreen had to follow a concept render while copper, pads, drills, solder-mask openings, routing, footprints, and board geometry stayed unchanged.
 
 ## How it works
 
@@ -175,12 +174,6 @@ This boundary keeps visual reasoning readable and leaves repetition, clipping, a
     └── test_geometry.py
 ```
 
-## Current status
-
-The intermediate representation, validation, and KiCad patching path exist. The general KiCad keepout parser still needs the full mask, drill, and board-edge extraction used by the original Y16 workflow. Until that lands, the repository must not imply that `clip_artwork.py` provides complete production clearance checking.
-
-Treat generated fabrication files as review artifacts until KiCad DRC and the exported Gerbers pass inspection.
-
 ## License
 
-MIT
+Released under the [MIT License](LICENSE). You may use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the software under its terms. The copyright and license notice must remain with copies or substantial portions of the software.
