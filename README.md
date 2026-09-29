@@ -67,15 +67,19 @@ The electrical design stays outside the artwork pipeline. The skill does not mov
 
 ## Install
 
-Requirements: Python 3.11 or newer.
+Install the skill straight from GitHub:
 
 ```bash
-git clone https://github.com/yuzushi-dev/pcb-artwork-skill.git
-cd pcb-artwork-skill
-python -m pip install -e .
+npx skills add yuzushi-dev/pcb-artwork-skill
 ```
 
-The repository is built around `SKILL.md`, so an agent can use the workflow without treating the helper scripts as the source of design decisions.
+The repository exposes the installable skill at `skills/pcb-artwork/`, including its scripts, schema, and references. The installer can therefore copy the complete skill instead of leaving runtime files behind at repository root.
+
+The skill needs Python 3.11 or newer. Its geometry helpers use Shapely and JSON Schema:
+
+```bash
+python -m pip install "shapely>=2,<3" "jsonschema>=4.22,<5"
+```
 
 ## Use
 
@@ -151,16 +155,22 @@ This boundary keeps visual reasoning readable and leaves repetition, clipping, a
 ├── pyproject.toml
 ├── assets/
 │   └── pcb-artwork-skill-mark.png
-├── schemas/
-│   └── artwork.schema.json
-├── scripts/
-│   ├── inspect_board.py
-│   ├── clip_artwork.py
-│   ├── patch_kicad.py
-│   └── validate_artwork.py
-├── references/
-│   ├── workflow.md
-│   └── geometry-rules.md
+├── skills/
+│   └── pcb-artwork/
+│       ├── SKILL.md
+│       ├── schemas/
+│       │   └── artwork.schema.json
+│       ├── scripts/
+│       │   ├── inspect_board.py
+│       │   ├── clip_artwork.py
+│       │   ├── patch_kicad.py
+│       │   └── validate_artwork.py
+│       └── references/
+│           ├── workflow.md
+│           └── geometry-rules.md
+├── schemas/                 Development copy
+├── scripts/                 Development copy
+├── references/              Development copy
 └── tests/
     └── test_geometry.py
 ```
