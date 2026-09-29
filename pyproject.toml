@@ -1,0 +1,18 @@
+[project]
+name = "pcb-artwork-skill"
+version = "0.1.0"
+description = "Deterministic geometry helpers for production-aware KiCad silkscreen artwork."
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = [
+  "shapely>=2.0,<3",
+  "jsonschema>=4.22,<5"
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8,<9"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
