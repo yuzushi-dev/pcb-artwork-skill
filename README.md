@@ -1,26 +1,18 @@
+<p align="center">
+  <img src="assets/pcb-artwork-skill-mark.png" alt="PCB Artwork Skill logo" width="128">
+</p>
+
 # PCB Artwork Skill
 
-**Turn a visual PCB reference into production-aware KiCad silkscreen artwork without handing the layout over to the model.**
+**Turn a visual PCB reference into production-aware KiCad silkscreen artwork without asking the model to hand-draw the board.**
 
-This repository contains a portable agent skill and a small deterministic geometry pipeline for PCB artwork work. The model handles interpretation: it identifies visual structure, decides which primitives describe it, and produces a normalized artwork plan. The scripts handle the parts that need exactness: coordinate mapping, clipping, KiCad serialization, Gerber checks, and reproducible validation.
+PCB Artwork Skill separates visual interpretation from PCB geometry. The agent reads the reference, breaks the design into primitives, and writes a compact artwork plan. Deterministic scripts handle coordinates, clipping, KiCad serialization, and validation.
 
-The first use case was a 57 × 32 mm biomonitor board whose front silkscreen had to match a concept image while leaving copper, pads, drills, solder-mask openings, routing, and board geometry unchanged.
+The first working case was a 57 × 32 mm biomonitor board. Its front silkscreen had to follow a concept render while copper, pads, drills, solder-mask openings, routing, footprints, and board geometry stayed unchanged.
 
-## What it does
+## How it works
 
-- Reads a KiCad PCB as the mechanical and manufacturing source of truth.
-- Treats the visual reference as an artwork source, not as PCB geometry.
-- Converts design elements into a small intermediate representation instead of raw KiCad syntax.
-- Clips artwork against protected board regions before writing \`F.SilkS\` or \`B.SilkS\`.
-- Writes generated artwork as KiCad geometry.
-- Produces machine-readable validation results.
-- Keeps artwork generation separate from the electrical design.
-
-The skill is meant for agentic workflows in Claude Code, Codex, or any client that can read a \`SKILL.md\` file and run local scripts.
-
-## Workflow
-
-\`\`\`
+```text
 reference image / SVG
         │
         ▼
@@ -29,7 +21,7 @@ visual decomposition
         ▼
 artwork.json
         │
-        ├── text / stencil
+        ├── stencil geometry
         ├── polygons
         ├── polylines
         ├── hatching
@@ -40,25 +32,125 @@ artwork.json
 board geometry + keepouts
         │
         ▼
-clipping / clearance checks
+clipping + clearance checks
         │
         ▼
-KiCad silkscreen geometry
+KiCad F.SilkS / B.SilkS
         │
         ▼
-Gerber + validation report
-\`\`\`
+Gerber + validation
+```
 
-The agent should not improvise hundreds of \`gr_poly\` objects in the PCB file. It should describe the artwork in the intermediate format and let the scripts compile it.
+The reference controls the composition. The board controls where ink can exist.
+
+For desired artwork `S` and protected board geometry `K`:
+
+```text
+S_safe = S - buffer(K, clearance)
+```
+
+The agent should describe the artwork in the intermediate representation instead of improvising hundreds of `gr_poly` entries inside the PCB file.
+
+## What it handles
+
+- KiCad PCB inspection before artwork changes
+- visual-reference decomposition into reusable primitives
+- millimetre-based artwork plans
+- `F.SilkS` and `B.SilkS` output
+- geometry-based lettering when a font would make the result machine-dependent
+- repeated patterns such as hatching and barcode bars
+- explicit clearance rules
+- reproducible generated artwork
+- validation before Gerber review
+
+The electrical design stays outside the artwork pipeline. The skill does not move footprints, tracks, vias, zones, pads, nets, drills, or the board outline unless the user asks for a board change.
+
+## Install
+
+Requirements: Python 3.11 or newer.
+
+```bash
+git clone https://github.com/yuzushi-dev/pcb-artwork-skill.git
+cd pcb-artwork-skill
+python -m pip install -e .
+```
+
+The repository is built around `SKILL.md`, so an agent can use the workflow without treating the helper scripts as the source of design decisions.
+
+## Use
+
+Inspect the board first:
+
+```bash
+python scripts/inspect_board.py board.kicad_pcb > board-geometry.json
+```
+
+Write and validate an `artwork.json` plan:
+
+```bash
+python scripts/validate_artwork.py artwork.json
+```
+
+Compile the artwork against the board:
+
+```bash
+python scripts/clip_artwork.py \
+  --board board.kicad_pcb \
+  --artwork artwork.json \
+  --output artwork-clipped.json
+```
+
+Write the compiled polygons into a copy of the PCB:
+
+```bash
+python scripts/patch_kicad.py \
+  --board board.kicad_pcb \
+  --artwork artwork-clipped.json \
+  --output board-artwork.kicad_pcb
+```
+
+Then open the result in KiCad, run DRC, export the Gerbers, and inspect the manufactured layers rather than relying on the PCB editor preview.
+
+## Intermediate representation
+
+A design instruction stays small enough to inspect:
+
+```json
+{
+  "version": 1,
+  "layer": "F.SilkS",
+  "clearance_mm": 0.16,
+  "items": [
+    {
+      "id": "edge-hatch",
+      "type": "hatching",
+      "region": [2.0, 2.0, 14.0, 4.5],
+      "angle_deg": 55,
+      "bar_width_mm": 0.42,
+      "spacing_mm": 0.68
+    },
+    {
+      "id": "ecg",
+      "type": "polyline",
+      "width_mm": 0.25,
+      "points": [[3, 29], [9, 29], [10, 27.1], [11, 30.0], [12, 29]]
+    }
+  ]
+}
+```
+
+This boundary keeps visual reasoning readable and leaves repetition, clipping, and serialization to code.
 
 ## Repository structure
 
-\`\`\`
+```text
 .
 ├── SKILL.md
 ├── README.md
 ├── LICENSE
 ├── pyproject.toml
+├── assets/
+│   └── pcb-artwork-skill-mark.png
 ├── schemas/
 │   └── artwork.schema.json
 ├── scripts/
@@ -71,65 +163,13 @@ The agent should not improvise hundreds of \`gr_poly\` objects in the PCB file. 
 │   └── geometry-rules.md
 └── tests/
     └── test_geometry.py
-\`\`\`
+```
 
-## Quick start
+## Current status
 
-Create a Python environment with Python 3.11 or newer, then install the package requirements:
+The intermediate representation, validation, and KiCad patching path exist. The general KiCad keepout parser still needs the full mask, drill, and board-edge extraction used by the original Y16 workflow. Until that lands, the repository must not imply that `clip_artwork.py` provides complete production clearance checking.
 
-\`\`\`bash
-python -m pip install -e .
-\`\`\`
-
-Inspect a board:
-
-\`\`\`bash
-python scripts/inspect_board.py board.kicad_pcb > board-geometry.json
-\`\`\`
-
-Validate an artwork plan:
-
-\`\`\`bash
-python scripts/validate_artwork.py artwork.json
-\`\`\`
-
-Clip it against board keepouts:
-
-\`\`\`bash
-python scripts/clip_artwork.py \
-  --board board.kicad_pcb \
-  --artwork artwork.json \
-  --output artwork-clipped.json
-\`\`\`
-
-Write the artwork into a copy of the board:
-
-\`\`\`bash
-python scripts/patch_kicad.py \
-  --board board.kicad_pcb \
-  --artwork artwork-clipped.json \
-  --output board-artwork.kicad_pcb
-\`\`\`
-
-The scripts refuse to edit copper, nets, vias, zones, footprints, drills, or board outline. The patcher replaces only generated silkscreen objects carrying the skill marker.
-
-## Design rule
-
-The reference controls composition. The board controls where ink can exist.
-
-For a desired artwork region \`S\` and protected board geometry \`K\`, the usable artwork is:
-
-\`\`\`
-S_safe = S - buffer(K, clearance)
-\`\`\`
-
-That rule is the core of the workflow. It lets the agent work from a visual master without treating a render as manufacturing truth.
-
-## Status
-
-This is an early private build. The current scripts cover the intermediate representation, KiCad text patching, and conservative geometry checks. Gerber export still relies on KiCad CLI when available and should remain part of the final review path.
-
-Do not send generated fabrication files to a manufacturer without opening the result in KiCad, running DRC, and reviewing the actual Gerbers.
+Treat generated fabrication files as review artifacts until KiCad DRC and the exported Gerbers pass inspection.
 
 ## License
 
