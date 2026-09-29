@@ -3,6 +3,10 @@
 </p>
 <p align="center"><strong>From artwork to silkscreen.</strong></p>
 
+<p align="center">
+  <a href="assets/video-explain.mp4"><img src="assets/video-explain.gif" alt="PCB Artwork Skill explainer: reference decomposed into primitives, artwork.json, clipping around pads and drills, F.SilkS Gerber output" width="800"></a>
+</p>
+
 # PCB Artwork Skill
 
 **Turn a visual PCB reference into production-aware KiCad silkscreen artwork without asking the model to hand-draw the board.**
