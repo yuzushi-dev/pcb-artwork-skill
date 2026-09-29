@@ -1,6 +1,7 @@
 <p align="center">
   <img src="assets/pcb-artwork-skill-mark.png" alt="PCB Artwork Skill logo" width="128">
 </p>
+<p align="center"><strong>From artwork to silkscreen.</strong></p>
 
 # PCB Artwork Skill
 
