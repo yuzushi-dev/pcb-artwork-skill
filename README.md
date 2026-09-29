@@ -8,6 +8,10 @@
 
 PCB Artwork Skill separates visual interpretation from PCB geometry. The agent reads the reference, breaks the design into primitives, and writes a compact artwork plan. Deterministic scripts handle coordinates, clipping, KiCad serialization, and validation.
 
+```bash
+npx skills add yuzushi-dev/pcb-artwork-skill
+```
+
 
 ## How it works
 
