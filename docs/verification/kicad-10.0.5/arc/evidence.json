@@ -1,0 +1,207 @@
+{
+  "checks": {
+    "drc": "passed",
+    "drill_export": "passed",
+    "fixture_loading": "passed",
+    "gerber_export": "passed",
+    "minimum_silk_width": "not_checked",
+    "visual_review": "not_run"
+  },
+  "drc_comparison": {
+    "modified_violations": [],
+    "new_violations": [],
+    "passed": true,
+    "source_violations": []
+  },
+  "export_settings": {
+    "drc_severities": "all",
+    "drc_units": "mm",
+    "layers": [
+      "F.SilkS",
+      "B.SilkS",
+      "F.Mask",
+      "B.Mask",
+      "Edge.Cuts"
+    ],
+    "mask_subtraction": false,
+    "precision": 6
+  },
+  "ignored_checks": {
+    "modified": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ],
+    "source": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ]
+  },
+  "inputs": {
+    "artwork": "pcb-artwork-arc.json",
+    "board": "geometry-arc-outline.kicad_pcb"
+  },
+  "kicad_cli_version": "10.0.5",
+  "outputs": {
+    "compile_report": {
+      "file": "compile-report.json",
+      "sha256": "12228b5a903b954c688cbe63d54174621e9c7ee14e5598159696b049ace7395e"
+    },
+    "drc": {
+      "modified": {
+        "file": "modified.drc.json",
+        "sha256": "3e5abde9234bfd1f40e97a89bc5e8bb89423236642a8b8ac866cabc7b6d8edc7"
+      },
+      "source": {
+        "file": "source.drc.json",
+        "sha256": "3335f6d09349560fedb81f43bf3f23bd503564f961cf8568b8af35555be5d060"
+      }
+    },
+    "drills": {
+      "modified": [
+        {
+          "file": "modified-gerbers/modified.drl",
+          "sha256": "656421cc874cadcdf8945aa4248d224f76055b9efada1577bbbd32c863e9076b"
+        }
+      ],
+      "source": [
+        {
+          "file": "source-gerbers/source.drl",
+          "sha256": "63ccf873722955e96fcf274fc43ae5b9a602a7ee0fdcb0f660b02b721a613570"
+        }
+      ]
+    },
+    "gerbers": {
+      "modified": {
+        "B.Mask": {
+          "file": "modified-gerbers/modified-B_Mask.gbs",
+          "sha256": "18af2b66b1a1919cb4bdef3653831109ad4d54eeec4220240e95d2af10f78a8d"
+        },
+        "B.SilkS": {
+          "file": "modified-gerbers/modified-b_silkscreen.gbo",
+          "sha256": "618f5a66044bf1e341d44b3febe3af259091200d071622393c595e1ae71c22c0"
+        },
+        "Edge.Cuts": {
+          "file": "modified-gerbers/modified-Edge_Cuts.gm1",
+          "sha256": "70cb2ee75169b4ab78697c3779f922823f54f8bc61d8a3cfa5daf3984200674c"
+        },
+        "F.Mask": {
+          "file": "modified-gerbers/modified-F_Mask.gts",
+          "sha256": "acdd4c6317fbf8ef737722976340c3eca02e35d2e59daed93407f6334a6276ff"
+        },
+        "F.SilkS": {
+          "file": "modified-gerbers/modified-f_silkscreen.gto",
+          "sha256": "9912f995bc7ff95145ddfccaaba26e39587f6013f5b6a5cfd55e4e281df47c28"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "source-gerbers/source-B_Mask.gbs",
+          "sha256": "f0da371ab49f2d3eff5ef986599760efdadfe7943f8540d6efbaa0833c575e61"
+        },
+        "B.SilkS": {
+          "file": "source-gerbers/source-b_silkscreen.gbo",
+          "sha256": "67672579495b7525e2cddadcdbd2ab59c5beb650605211a824745aa75f1a2d8e"
+        },
+        "Edge.Cuts": {
+          "file": "source-gerbers/source-Edge_Cuts.gm1",
+          "sha256": "6c10898ed13c9dcf7a0dda6db9e99183508669db79b9505c7fec1b15ee645992"
+        },
+        "F.Mask": {
+          "file": "source-gerbers/source-F_Mask.gts",
+          "sha256": "48f8c1e03f8f78660e64ccfa45aa5a67a955dbe57cdac4d4acad1092d83cca2e"
+        },
+        "F.SilkS": {
+          "file": "source-gerbers/source-f_silkscreen.gto",
+          "sha256": "9558f0d5ff04d66cb02b053d2b32c7f0054def8a85881bb268ade35e9cc789a5"
+        }
+      }
+    },
+    "modified_board": {
+      "file": "modified.kicad_pcb",
+      "sha256": "b9a67d98d21eec9e48882f34020a3a90aa64cdf208e281db42bf8d510840d14c"
+    },
+    "previews": {
+      "modified": {
+        "B.Mask": {
+          "file": "previews/modified-B_Mask.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "B.SilkS": {
+          "file": "previews/modified-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/modified-Edge_Cuts.svg",
+          "sha256": "52f528edbb76af808440beffe560d39e7a9615966d647d2061037f0b61322806"
+        },
+        "F.Mask": {
+          "file": "previews/modified-F_Mask.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "F.SilkS": {
+          "file": "previews/modified-F_SilkS.svg",
+          "sha256": "de8798b1e2d70cd3dece75e84ecc1f01363aa55713379c4ee9758e6f0ee2301f"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "previews/source-B_Mask.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "B.SilkS": {
+          "file": "previews/source-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/source-Edge_Cuts.svg",
+          "sha256": "52f528edbb76af808440beffe560d39e7a9615966d647d2061037f0b61322806"
+        },
+        "F.Mask": {
+          "file": "previews/source-F_Mask.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "F.SilkS": {
+          "file": "previews/source-F_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        }
+      }
+    }
+  },
+  "version": 1
+}

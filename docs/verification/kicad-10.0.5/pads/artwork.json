@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "layer": "F.SilkS",
+  "clearance_mm": 0.16,
+  "items": [
+    {"id": "cover", "type": "rect", "region": [-1, -1, 31, 21]}
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "checks": {
+    "drc": "passed",
+    "drill_export": "passed",
+    "fixture_loading": "passed",
+    "gerber_export": "passed",
+    "minimum_silk_width": "not_checked",
+    "visual_review": "passed"
+  },
+  "drc_comparison": {
+    "modified_violations": [],
+    "new_violations": [],
+    "passed": true,
+    "source_violations": []
+  },
+  "export_settings": {
+    "drc_severities": "all",
+    "drc_units": "mm",
+    "layers": [
+      "F.SilkS",
+      "B.SilkS",
+      "F.Mask",
+      "B.Mask",
+      "Edge.Cuts"
+    ],
+    "mask_subtraction": false,
+    "precision": 6
+  },
+  "ignored_checks": {
+    "modified": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ],
+    "source": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ]
+  },
+  "inputs": {
+    "artwork": "pcb-artwork-arc.json",
+    "board": "geometry-arc-outline.kicad_pcb"
+  },
+  "kicad_cli_version": "10.0.5",
+  "outputs": {
+    "compile_report": {
+      "file": "compile-report.json",
+      "sha256": "12228b5a903b954c688cbe63d54174621e9c7ee14e5598159696b049ace7395e"
+    },
+    "drc": {
+      "modified": {
+        "file": "modified.drc.json",
+        "sha256": "d7bec35a3677fe8018c0edd18a6a18b9aabbd65d6e0a409b895d678c5f57a78a"
+      },
+      "source": {
+        "file": "source.drc.json",
+        "sha256": "bfd7c7f46e6fe2a506495c103d0528242ccc8ae9b348feaeeab2c46b0ed5dabb"
+      }
+    },
+    "drills": {
+      "modified": [
+        {
+          "file": "modified-gerbers/modified.drl",
+          "sha256": "9a317881b312de0dbc79acf25e496cad3cc9c8e72768a7406f9cd104d368f150"
+        }
+      ],
+      "source": [
+        {
+          "file": "source-gerbers/source.drl",
+          "sha256": "b4abe32da189209e47a62d69d2b46c5c3009a392668f78b09af3db388a32e6ba"
+        }
+      ]
+    },
+    "gerbers": {
+      "modified": {
+        "B.Mask": {
+          "file": "modified-gerbers/modified-B_Mask.gbs",
+          "sha256": "5f19fd5a4c27f6dab9909aa3f51834cbe11e4af3912ef55ffe1ad694e352eea3"
+        },
+        "B.SilkS": {
+          "file": "modified-gerbers/modified-b_silkscreen.gbo",
+          "sha256": "465a03be8b4b93c3bc44d251bb66376250c0d81f5533059747dcd1084d028353"
+        },
+        "Edge.Cuts": {
+          "file": "modified-gerbers/modified-Edge_Cuts.gm1",
+          "sha256": "31fc089b74e3f2701a11e245d806a138465a52b362bee4522d6c2bec2e4a063a"
+        },
+        "F.Mask": {
+          "file": "modified-gerbers/modified-F_Mask.gts",
+          "sha256": "4f0ae40afa1410c93fd8fffc2085a1d8ce07d2b47eaf20cec31d275ac2b00257"
+        },
+        "F.SilkS": {
+          "file": "modified-gerbers/modified-f_silkscreen.gto",
+          "sha256": "ba92fe8dd9e30f77a17a412308e69ee803aaa0253e439aea44c55dc61a0519c7"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "source-gerbers/source-B_Mask.gbs",
+          "sha256": "5bea1ad5d65d26a85d4ce2b7e61559222e254d0d87e969dc8a8077bb937adca1"
+        },
+        "B.SilkS": {
+          "file": "source-gerbers/source-b_silkscreen.gbo",
+          "sha256": "9a1548c2e687e6178cb7365dd5224eb0bfcfd40166819729f0f7d76274c83882"
+        },
+        "Edge.Cuts": {
+          "file": "source-gerbers/source-Edge_Cuts.gm1",
+          "sha256": "92b7b0e7bee81cf6ad51e12ecf8769e57ac09a3ed9ed638ccdbf06ac50eb8577"
+        },
+        "F.Mask": {
+          "file": "source-gerbers/source-F_Mask.gts",
+          "sha256": "331794afc0daf74522d45f06bbb623b3ecd22e9a428da6b8054d3a7a16b885db"
+        },
+        "F.SilkS": {
+          "file": "source-gerbers/source-f_silkscreen.gto",
+          "sha256": "9b3a7f48708865810dbed34ad6faed06f3887d2df1c1d7d1bf836f6708a7ead0"
+        }
+      }
+    },
+    "modified_board": {
+      "file": "modified.kicad_pcb",
+      "sha256": "90c0e64bb3c202bc8ab7a7750c293f88fe567f4737128585cf7d374872e46b11"
+    },
+    "overlay_previews": {
+      "overlay-B.png": {
+        "file": "previews/overlay-B.png",
+        "sha256": "77ad4f4fafcdc3bfa8283ed54cd4b4912715b3b22f170aa7ed69530af3b38721"
+      },
+      "overlay-B.svg": {
+        "file": "previews/overlay-B.svg",
+        "sha256": "6cd0307be602ac75737c011399fe3b78ae6789d076729d57741afac2ef3abbcf"
+      },
+      "overlay-F.png": {
+        "file": "previews/overlay-F.png",
+        "sha256": "0884e15247fcb66d7ced9a476514406a762a10ef8687bc5d249464e5e51a7d8c"
+      },
+      "overlay-F.svg": {
+        "file": "previews/overlay-F.svg",
+        "sha256": "666a60ec339ecbf3202457435fbff6763ba89d20feac798cc4f69ddb47862503"
+      }
+    },
+    "previews": {
+      "modified": {
+        "B.Mask": {
+          "file": "previews/modified-B_Mask.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "B.SilkS": {
+          "file": "previews/modified-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/modified-Edge_Cuts.svg",
+          "sha256": "52f528edbb76af808440beffe560d39e7a9615966d647d2061037f0b61322806"
+        },
+        "F.Mask": {
+          "file": "previews/modified-F_Mask.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "F.SilkS": {
+          "file": "previews/modified-F_SilkS.svg",
+          "sha256": "de8798b1e2d70cd3dece75e84ecc1f01363aa55713379c4ee9758e6f0ee2301f"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "previews/source-B_Mask.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "B.SilkS": {
+          "file": "previews/source-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/source-Edge_Cuts.svg",
+          "sha256": "52f528edbb76af808440beffe560d39e7a9615966d647d2061037f0b61322806"
+        },
+        "F.Mask": {
+          "file": "previews/source-F_Mask.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "F.SilkS": {
+          "file": "previews/source-F_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        }
+      }
+    }
+  },
+  "version": 1,
+  "visual_review": {
+    "legend": {
+      "board": "pale grey",
+      "mask_opening": "orange",
+      "physical_hole": "white",
+      "silk": "dark blue"
+    },
+    "method": "Coding-agent visual inspection of actual exported Gerber unions over supported board area and Excellon holes. Coordinates use board XY; back is not mirrored.",
+    "result": "Clipped edges, apertures, circular cutouts and slots appear consistent; no visible ink overlaps protected apertures.",
+    "reviewed_layers": [
+      "F.SilkS",
+      "B.SilkS",
+      "F.Mask",
+      "B.Mask",
+      "Edge.Cuts"
+    ],
+    "reviewer": "coding agent"
+  }
+}

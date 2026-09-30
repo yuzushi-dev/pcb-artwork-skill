@@ -1,80 +1,178 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/yuzushi-dev/pcb-artwork-skill/schemas/artwork.schema.json",
-  "title": "PCB artwork intermediate representation",
+  "title": "PCB artwork input v1",
   "type": "object",
-  "required": ["version", "layer", "items"],
   "additionalProperties": false,
+  "required": [
+    "version",
+    "layer",
+    "items"
+  ],
   "properties": {
-    "version": {"const": 1},
-    "layer": {"enum": ["F.SilkS", "B.SilkS"]},
-    "clearance_mm": {"type": "number", "minimum": 0},
-    "items": {"type": "array", "items": {"$ref": "#/$defs/item"}}
-  },
-  "$defs": {
-    "point": {
-      "type": "array",
-      "prefixItems": [{"type": "number"}, {"type": "number"}],
-      "minItems": 2,
-      "maxItems": 2
+    "version": {
+      "const": 1
     },
-    "item": {
-      "oneOf": [
-        {
-          "type": "object",
-          "required": ["id", "type", "points"],
-          "additionalProperties": false,
-          "properties": {
-            "id": {"type": "string", "minLength": 1},
-            "type": {"const": "polygon"},
-            "points": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/point"}}
-          }
-        },
-        {
-          "type": "object",
-          "required": ["id", "type", "points", "width_mm"],
-          "additionalProperties": false,
-          "properties": {
-            "id": {"type": "string", "minLength": 1},
-            "type": {"const": "polyline"},
-            "points": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/point"}},
-            "width_mm": {"type": "number", "exclusiveMinimum": 0}
-          }
-        },
-        {
-          "type": "object",
-          "required": ["id", "type", "region"],
-          "additionalProperties": false,
-          "properties": {
-            "id": {"type": "string", "minLength": 1},
-            "type": {"const": "rect"},
-            "region": {
-              "type": "array",
-              "prefixItems": [{"type": "number"}, {"type": "number"}, {"type": "number"}, {"type": "number"}],
-              "minItems": 4,
-              "maxItems": 4
+    "layer": {
+      "enum": [
+        "F.SilkS",
+        "B.SilkS"
+      ]
+    },
+    "clearance_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "points"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "const": "polygon"
+              },
+              "points": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "minItems": 3,
+                "maxItems": 100000
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "points",
+              "width_mm"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "const": "polyline"
+              },
+              "points": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "minItems": 2,
+                "maxItems": 100000
+              },
+              "width_mm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "region"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "const": "rect"
+              },
+              "region": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "region",
+              "bar_width_mm",
+              "spacing_mm"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "const": "hatching"
+              },
+              "region": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "angle_deg": {
+                "type": "number"
+              },
+              "bar_width_mm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "spacing_mm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
             }
           }
-        },
-        {
-          "type": "object",
-          "required": ["id", "type", "region", "angle_deg", "bar_width_mm", "spacing_mm"],
-          "additionalProperties": false,
-          "properties": {
-            "id": {"type": "string", "minLength": 1},
-            "type": {"const": "hatching"},
-            "region": {
-              "type": "array",
-              "prefixItems": [{"type": "number"}, {"type": "number"}, {"type": "number"}, {"type": "number"}],
-              "minItems": 4,
-              "maxItems": 4
-            },
-            "angle_deg": {"type": "number"},
-            "bar_width_mm": {"type": "number", "exclusiveMinimum": 0},
-            "spacing_mm": {"type": "number", "exclusiveMinimum": 0}
-          }
-        }
-      ]
+        ]
+      }
     }
   }
 }

@@ -1,0 +1,241 @@
+{
+  "checks": {
+    "drc": "passed",
+    "drill_export": "passed",
+    "fixture_loading": "passed",
+    "gerber_export": "passed",
+    "minimum_silk_width": "review_required",
+    "visual_review": "not_run"
+  },
+  "drc_comparison": {
+    "modified_violations": [
+      {
+        "description": "The current configuration does not include the footprint library 'Synthetic'",
+        "items": [
+          {
+            "description": "Footprint <no reference designator>",
+            "position_mm": [
+              5.0,
+              5.0
+            ]
+          }
+        ],
+        "severity": "warning",
+        "type": "lib_footprint_issues"
+      }
+    ],
+    "new_violations": [],
+    "passed": true,
+    "source_violations": [
+      {
+        "description": "The current configuration does not include the footprint library 'Synthetic'",
+        "items": [
+          {
+            "description": "Footprint <no reference designator>",
+            "position_mm": [
+              5.0,
+              5.0
+            ]
+          }
+        ],
+        "severity": "warning",
+        "type": "lib_footprint_issues"
+      }
+    ]
+  },
+  "export_settings": {
+    "drc_severities": "all",
+    "drc_units": "mm",
+    "layers": [
+      "F.SilkS",
+      "B.SilkS",
+      "F.Mask",
+      "B.Mask",
+      "Edge.Cuts"
+    ],
+    "mask_subtraction": false,
+    "precision": 6
+  },
+  "ignored_checks": {
+    "modified": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ],
+    "source": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ]
+  },
+  "inputs": {
+    "artwork": "example.json",
+    "board": "mask-pad.kicad_pcb"
+  },
+  "kicad_cli_version": "10.0.5",
+  "outputs": {
+    "compile_report": {
+      "file": "compile-report.json",
+      "sha256": "617558f46b68a5fde8b8164db5a1810d6f010d031cf73b707b1eda24c67aa1fa"
+    },
+    "drc": {
+      "modified": {
+        "file": "modified.drc.json",
+        "sha256": "af66688b1909c748d426302cdcb83fa75c40f101108d14ca03dd4e36c521056e"
+      },
+      "source": {
+        "file": "source.drc.json",
+        "sha256": "61c7405bdff14928bfe0f2eaad29781410e1a65e8e05cbc2f196781ab352b71e"
+      }
+    },
+    "drills": {
+      "modified": [
+        {
+          "file": "modified-gerbers/modified.drl",
+          "sha256": "b0c419717c0f34117cfc53b830aeb2d8a2cbe84bd5700c14f30ca971a6ba0010"
+        }
+      ],
+      "source": [
+        {
+          "file": "source-gerbers/source.drl",
+          "sha256": "e9786471be08a49d019d9fb745bcb732415c39b5e3f5fa18df3766908de2bca2"
+        }
+      ]
+    },
+    "gerbers": {
+      "modified": {
+        "B.Mask": {
+          "file": "modified-gerbers/modified-B_Mask.gbs",
+          "sha256": "d46ccc224809beba86a51f9486c7850986333087b5c2dc4d3246bf42cf84be65"
+        },
+        "B.SilkS": {
+          "file": "modified-gerbers/modified-b_silkscreen.gbo",
+          "sha256": "174de088eb19b99e79b9ba4c7ca547ff049342680fd272c7db08f0900d1714ce"
+        },
+        "Edge.Cuts": {
+          "file": "modified-gerbers/modified-Edge_Cuts.gm1",
+          "sha256": "87abac54a465e2e83ca1a10940791ab2c002564e71a177cd8975f709fdfab369"
+        },
+        "F.Mask": {
+          "file": "modified-gerbers/modified-F_Mask.gts",
+          "sha256": "27326eef44da342bccf1dd3b75b25a3d8b52ed3ae7cb62b3d96e65985d849d44"
+        },
+        "F.SilkS": {
+          "file": "modified-gerbers/modified-f_silkscreen.gto",
+          "sha256": "6c0aa95e1affc18c7ddd63270459f144224ab9bedea2acee14d777fd66a6b42a"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "source-gerbers/source-B_Mask.gbs",
+          "sha256": "5380c4e11dabadf93e3fa3ae81a9090db65fa11c295e6e45945a06c26daea510"
+        },
+        "B.SilkS": {
+          "file": "source-gerbers/source-b_silkscreen.gbo",
+          "sha256": "b5f54a166e914b50751d41d7cc0a351bf6802e44768d45215779071c0e26ab34"
+        },
+        "Edge.Cuts": {
+          "file": "source-gerbers/source-Edge_Cuts.gm1",
+          "sha256": "e407c011f32ecd21884cda1d9517202a3156778f1d4443533a7bb2e04bcf935b"
+        },
+        "F.Mask": {
+          "file": "source-gerbers/source-F_Mask.gts",
+          "sha256": "bd837bdcada733289e06643983449b4512431272710f2230cfdb2b9f9f6d142e"
+        },
+        "F.SilkS": {
+          "file": "source-gerbers/source-f_silkscreen.gto",
+          "sha256": "f7f6a5fbd895c3c86fc72418c0709d13a3bd18478602ccd7446df55e97616927"
+        }
+      }
+    },
+    "manufacturing_review": {
+      "file": "manufacturing-review.svg",
+      "sha256": "92145b8cd938e22a19fc7b27fff1e25fb70b59421176c1e980792a3be5ef205a"
+    },
+    "modified_board": {
+      "file": "modified.kicad_pcb",
+      "sha256": "9d2e4a9ddf98bd37e2787db22b821041ac32572b7387f695f8cbdbacebf90956"
+    },
+    "previews": {
+      "modified": {
+        "B.Mask": {
+          "file": "previews/modified-B_Mask.svg",
+          "sha256": "87e844870b57ffbc93662df34faf243b822245809753fd3242acad075cdffce1"
+        },
+        "B.SilkS": {
+          "file": "previews/modified-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/modified-Edge_Cuts.svg",
+          "sha256": "bbd1dc5cb05b94394e267df4b336ec54d6091851ad4a565c1d2e721f58e3d6cf"
+        },
+        "F.Mask": {
+          "file": "previews/modified-F_Mask.svg",
+          "sha256": "87e844870b57ffbc93662df34faf243b822245809753fd3242acad075cdffce1"
+        },
+        "F.SilkS": {
+          "file": "previews/modified-F_SilkS.svg",
+          "sha256": "fbccb55827254477eae0300cf9d386636d54960a8d1186b19ce970bc3714e07b"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "previews/source-B_Mask.svg",
+          "sha256": "87e844870b57ffbc93662df34faf243b822245809753fd3242acad075cdffce1"
+        },
+        "B.SilkS": {
+          "file": "previews/source-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/source-Edge_Cuts.svg",
+          "sha256": "bbd1dc5cb05b94394e267df4b336ec54d6091851ad4a565c1d2e721f58e3d6cf"
+        },
+        "F.Mask": {
+          "file": "previews/source-F_Mask.svg",
+          "sha256": "87e844870b57ffbc93662df34faf243b822245809753fd3242acad075cdffce1"
+        },
+        "F.SilkS": {
+          "file": "previews/source-F_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        }
+      }
+    }
+  },
+  "version": 1
+}

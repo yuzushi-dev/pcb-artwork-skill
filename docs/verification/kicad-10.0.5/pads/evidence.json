@@ -1,0 +1,377 @@
+{
+  "checks": {
+    "drc": "passed",
+    "drill_export": "passed",
+    "fixture_loading": "passed",
+    "gerber_export": "passed",
+    "minimum_silk_width": "not_checked",
+    "visual_review": "not_run"
+  },
+  "drc_comparison": {
+    "modified_violations": [
+      {
+        "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0606 mm)",
+        "items": [
+          {
+            "description": "PTH pad 2 [<no net>] of ",
+            "position_mm": [
+              27.0,
+              5.0
+            ]
+          }
+        ],
+        "severity": "error",
+        "type": "annular_width"
+      },
+      {
+        "description": "Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.0000 mm)",
+        "items": [
+          {
+            "description": "Pad 4 [<no net>] of  on F.Cu",
+            "position_mm": [
+              9.0,
+              1.0
+            ]
+          },
+          {
+            "description": "Rectangle on Edge.Cuts",
+            "position_mm": [
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "severity": "error",
+        "type": "copper_edge_clearance"
+      },
+      {
+        "description": "Rear solder mask aperture bridges items with different nets",
+        "items": [
+          {
+            "description": "PTH pad 2 [<no net>] of ",
+            "position_mm": [
+              27.0,
+              5.0
+            ]
+          },
+          {
+            "description": "Pad 1 [<no net>] of  on B.Cu",
+            "position_mm": [
+              25.0,
+              4.0
+            ]
+          }
+        ],
+        "severity": "error",
+        "type": "solder_mask_bridge"
+      },
+      {
+        "description": "The current configuration does not include the footprint library 'Synthetic'",
+        "items": [
+          {
+            "description": "Footprint <no reference designator>",
+            "position_mm": [
+              25.0,
+              5.0
+            ]
+          }
+        ],
+        "severity": "warning",
+        "type": "lib_footprint_issues"
+      },
+      {
+        "description": "The current configuration does not include the footprint library 'Synthetic'",
+        "items": [
+          {
+            "description": "Footprint <no reference designator>",
+            "position_mm": [
+              5.0,
+              5.0
+            ]
+          }
+        ],
+        "severity": "warning",
+        "type": "lib_footprint_issues"
+      }
+    ],
+    "new_violations": [],
+    "passed": true,
+    "source_violations": [
+      {
+        "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0606 mm)",
+        "items": [
+          {
+            "description": "PTH pad 2 [<no net>] of ",
+            "position_mm": [
+              27.0,
+              5.0
+            ]
+          }
+        ],
+        "severity": "error",
+        "type": "annular_width"
+      },
+      {
+        "description": "Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.0000 mm)",
+        "items": [
+          {
+            "description": "Pad 4 [<no net>] of  on F.Cu",
+            "position_mm": [
+              9.0,
+              1.0
+            ]
+          },
+          {
+            "description": "Rectangle on Edge.Cuts",
+            "position_mm": [
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "severity": "error",
+        "type": "copper_edge_clearance"
+      },
+      {
+        "description": "Rear solder mask aperture bridges items with different nets",
+        "items": [
+          {
+            "description": "PTH pad 2 [<no net>] of ",
+            "position_mm": [
+              27.0,
+              5.0
+            ]
+          },
+          {
+            "description": "Pad 1 [<no net>] of  on B.Cu",
+            "position_mm": [
+              25.0,
+              4.0
+            ]
+          }
+        ],
+        "severity": "error",
+        "type": "solder_mask_bridge"
+      },
+      {
+        "description": "The current configuration does not include the footprint library 'Synthetic'",
+        "items": [
+          {
+            "description": "Footprint <no reference designator>",
+            "position_mm": [
+              25.0,
+              5.0
+            ]
+          }
+        ],
+        "severity": "warning",
+        "type": "lib_footprint_issues"
+      },
+      {
+        "description": "The current configuration does not include the footprint library 'Synthetic'",
+        "items": [
+          {
+            "description": "Footprint <no reference designator>",
+            "position_mm": [
+              5.0,
+              5.0
+            ]
+          }
+        ],
+        "severity": "warning",
+        "type": "lib_footprint_issues"
+      }
+    ]
+  },
+  "export_settings": {
+    "drc_severities": "all",
+    "drc_units": "mm",
+    "layers": [
+      "F.SilkS",
+      "B.SilkS",
+      "F.Mask",
+      "B.Mask",
+      "Edge.Cuts"
+    ],
+    "mask_subtraction": false,
+    "precision": 6
+  },
+  "ignored_checks": {
+    "modified": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ],
+    "source": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ]
+  },
+  "inputs": {
+    "artwork": "pcb-artwork-pads.json",
+    "board": "geometry-pads.kicad_pcb"
+  },
+  "kicad_cli_version": "10.0.5",
+  "outputs": {
+    "compile_report": {
+      "file": "compile-report.json",
+      "sha256": "32a5f1e656c33c7d1fb54c91841031bc6ceda3f3fa7da821b76f90117760d94c"
+    },
+    "drc": {
+      "modified": {
+        "file": "modified.drc.json",
+        "sha256": "f2ef9a33773c355b46974721241b3cb6a885b9bac4721af6072483b3763e379c"
+      },
+      "source": {
+        "file": "source.drc.json",
+        "sha256": "2f876a3c82650f338718a4f65f46b4947375a3f84bf481fca96311a6e87ca124"
+      }
+    },
+    "drills": {
+      "modified": [
+        {
+          "file": "modified-gerbers/modified.drl",
+          "sha256": "f5900b16d90eb2f5103537f07ba69cf9d473a87fa36be58c71fb3f1ef23bc858"
+        }
+      ],
+      "source": [
+        {
+          "file": "source-gerbers/source.drl",
+          "sha256": "a9f74adfcb5ce462b69d105517abfd724127aff6034b197cccb07f7e3e99da82"
+        }
+      ]
+    },
+    "gerbers": {
+      "modified": {
+        "B.Mask": {
+          "file": "modified-gerbers/modified-B_Mask.gbs",
+          "sha256": "39ad5a386f15127c27fbc5ae54fc2f0ccd2afef8c5685fd69e3ec20acd896ca9"
+        },
+        "B.SilkS": {
+          "file": "modified-gerbers/modified-b_silkscreen.gbo",
+          "sha256": "945b975fb460bf295d00929d98fa37a973bb918e77d94643dcbaf9427af1a715"
+        },
+        "Edge.Cuts": {
+          "file": "modified-gerbers/modified-Edge_Cuts.gm1",
+          "sha256": "e2f316660a868e8ad4158cb1e7fa8c03c2042ad0a1258afb1e8681a79a397121"
+        },
+        "F.Mask": {
+          "file": "modified-gerbers/modified-F_Mask.gts",
+          "sha256": "54c8a6f4774acf3b6c98aee0594acee07eacfb3e550a1078108214e8f8b439a9"
+        },
+        "F.SilkS": {
+          "file": "modified-gerbers/modified-f_silkscreen.gto",
+          "sha256": "fa8a72825929c2aff4f3b7577afa4b3cb0fdd4a44d9b29cc59bfba779935ef58"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "source-gerbers/source-B_Mask.gbs",
+          "sha256": "05252edada6845a5b52cbb46e46c1104f8638a2ccdf7134b3f6275672bfe12bb"
+        },
+        "B.SilkS": {
+          "file": "source-gerbers/source-b_silkscreen.gbo",
+          "sha256": "3fed567776fdfd88d42d02d21ce3fffd4e49b534456bb49960ca9f734a6ca092"
+        },
+        "Edge.Cuts": {
+          "file": "source-gerbers/source-Edge_Cuts.gm1",
+          "sha256": "89be933c56467e4648a034c31d0304f812d7dd35f310b7e0abd02d63950cb5f9"
+        },
+        "F.Mask": {
+          "file": "source-gerbers/source-F_Mask.gts",
+          "sha256": "4e006a9350145477c9685ac75230a807b251680652a99a03eff10bad6e8aeaac"
+        },
+        "F.SilkS": {
+          "file": "source-gerbers/source-f_silkscreen.gto",
+          "sha256": "701a0edf130e8524be87de8d5e654c1310e8d132eef9474c8dddae444ea47334"
+        }
+      }
+    },
+    "modified_board": {
+      "file": "modified.kicad_pcb",
+      "sha256": "b3aef0bc9538434998eeae03ac98aa418537c7be1e77b54fec6b9a8b6e57e20f"
+    },
+    "previews": {
+      "modified": {
+        "B.Mask": {
+          "file": "previews/modified-B_Mask.svg",
+          "sha256": "16055433a235e4d451990bff9f4ed4aca43396d7567a1eb43a6869eef502ade2"
+        },
+        "B.SilkS": {
+          "file": "previews/modified-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/modified-Edge_Cuts.svg",
+          "sha256": "1d96e76354ca6bb9a04d3ba162eb383c332a62630acc8e14ce9f7ba04ff38af5"
+        },
+        "F.Mask": {
+          "file": "previews/modified-F_Mask.svg",
+          "sha256": "7aced79be8369e26cad8fb404e97267755dca4c58ca53d0c8878b871fc7c3ecb"
+        },
+        "F.SilkS": {
+          "file": "previews/modified-F_SilkS.svg",
+          "sha256": "2920ea38eebe4a7c9631d5bd1343f0c1ea5848049ee1c11f4f4a71cca17bc1b6"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "previews/source-B_Mask.svg",
+          "sha256": "16055433a235e4d451990bff9f4ed4aca43396d7567a1eb43a6869eef502ade2"
+        },
+        "B.SilkS": {
+          "file": "previews/source-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/source-Edge_Cuts.svg",
+          "sha256": "1d96e76354ca6bb9a04d3ba162eb383c332a62630acc8e14ce9f7ba04ff38af5"
+        },
+        "F.Mask": {
+          "file": "previews/source-F_Mask.svg",
+          "sha256": "7aced79be8369e26cad8fb404e97267755dca4c58ca53d0c8878b871fc7c3ecb"
+        },
+        "F.SilkS": {
+          "file": "previews/source-F_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        }
+      }
+    }
+  },
+  "version": 1
+}

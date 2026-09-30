@@ -1,189 +1,81 @@
 ---
 name: pcb-artwork
-description: Convert visual PCB references into production-aware KiCad silkscreen artwork through a deterministic geometry pipeline. Use when a user provides a KiCad PCB plus a reference image, render, SVG, or artwork brief and wants F.SilkS or B.SilkS redesigned without changing the electrical design.
+description: Use when a user provides a KiCad PCB and a reference image, SVG, or artwork brief and wants front or back silkscreen redesigned without changing the electrical design.
 ---
 
 # PCB Artwork
 
-Use this skill when the job is about PCB artwork, front or back silkscreen composition, reference-image matching, decorative board graphics, labels, reticles, hatching, barcodes, warning marks, or similar visual work on a KiCad board.
+The reference determines composition; the PCB determines where ink can exist.
+Keep footprints, pads, tracks, vias, zones, nets, drills, existing silk and the
+board outline unchanged. Work on a copy.
 
-Do not treat the reference image as manufacturing geometry. Treat the KiCad PCB as the source of truth for board shape, holes, pads, solder-mask openings, components, and routing.
+## Workflow
 
-## Contract
+1. Identify the authoritative `.kicad_pcb`, target silk side and original revision.
+2. Inspect supported geometry: `python scripts/inspect_board.py board.kicad_pcb`.
+3. Describe the reference using input v1 polygons, polylines, rectangles and
+   hatching; build lettering/reticles from these primitives when needed.
+4. Validate: `python scripts/validate_artwork.py artwork.json`.
+5. Compile and write the copy in one invocation:
 
-Preserve the electrical and mechanical design unless the user asks for a board change.
+```bash
+python scripts/compile_artwork.py --board board.kicad_pcb --artwork artwork.json \
+  --output board-artwork.kicad_pcb --report artwork-report.json --review-svg review.svg
+```
 
-Do not move footprints, tracks, vias, zones, pads, nets, drills, or board outline for the sake of the artwork.
+6. Review clipping/removals and manufacturing warnings. Export real Gerbers, compare DRC
+   with the source and inspect the exported silk before fabrication.
 
-Do not write large amounts of KiCad geometry by hand when the same result can be expressed through the artwork intermediate representation and compiled by the scripts in this repository.
+`clip_artwork.py` and `patch_kicad.py` alias the same operation: both accept the
+original v1 input and output a PCB. Do not pass legacy compiled JSON containing
+`meta`. No separate compiled artifact or input-hash handshake is needed.
 
-Do not claim that a board is production-ready unless KiCad DRC and the exported Gerbers have been reviewed.
+## Input and geometry
 
-## Process
+Install Python 3.11+ with `shapely>=2.1,<3` and `jsonschema>=4.22,<5` in a venv.
+Coordinates and widths use millimetres. Points are finite 2D values; widths and
+hatch pitch are positive. `spacing_mm` is centre-to-centre pitch. `angle_deg`
+defaults to 0 and rotates bars in the artwork XY plane. Each primitive accepts
+only its own fields; IDs are unique. Reject degenerate/self-intersecting polygons.
 
-### 1. Establish the baseline
+Supported board file version: `20241229`, verified with KiCad CLI 10.0.5.
+Require board `setup/pad_to_mask_clearance`; companion `.kicad_dru` custom rules
+are unsupported. See `references/supported-geometry.md` for the supported subset.
 
-Find the authoritative \`.kicad_pcb\` file and identify the target silkscreen layer.
+The compiler clips each side against effective solder-mask openings and physical
+holes, inside the board with its cutouts. Unsupported protected constructs must
+fail; do not approximate them manually or bypass errors to obtain an output.
+The numerical curve error defaults to 0.001 mm; coordinates serialize to six
+millimetre decimals. Verify distance after serialization. Edge margin defaults
+to effective clearance and can be set with `--edge-margin-mm`.
 
-Record:
+Budgets: 16 MiB per input, 10,000 primitives, 100,000 input vertices, 10,000
+estimated hatch bars, 50,000 output polygons and 200,000 output vertices.
+A completely removed composition returns exit 2 with `output_written:false`; an
+existing output remains unchanged and is reported as such.
+Malformed/unsupported input returns exit 1; useful compilation returns exit 0.
 
-- board dimensions and outline;
-- footprint count and positions;
-- drills and slots;
-- front and back solder-mask openings;
-- existing silkscreen;
-- revision labels and board identifiers.
+## Ownership and verification
 
-Run:
+Update generated objects independently by side using native named groups and
+reserved UUID prefix `50434241`. Missing groups, orphan tagged polygons, prefix
+collisions and inconsistent membership block the operation. Preserve all unmanaged
+source bytes. Do not manually remove ownership metadata or rewrite generated UUIDs.
 
-\`\`\`bash
-python scripts/inspect_board.py <board.kicad_pcb> > board-geometry.json
-\`\`\`
+The compile report separates geometry from external KiCad loading, DRC, Gerber
+and visual checks. Those external checks remain `not_run` until actually run.
+The CLI defaults to a conservative engineering profile: target line width
+0.20 mm, mask/drill clearance at least 0.25 mm, text-height guidance 1.0 mm.
+Stricter artwork clearance is preserved. `--manufacturing-profile geometry-only`
+explicitly disables this profile and its width audit. Library callers opt in.
 
-Keep an untouched baseline copy.
-
-### 2. Read the reference as a composition
-
-Break the visual reference into families of primitives.
-
-Use these categories before inventing a new one:
-
-- \`polygon\` for filled marks and stencil glyphs;
-- \`polyline\` for traces such as ECG lines;
-- \`rect\` for bars and blocks;
-- \`hatching\` for repeated diagonal marks;
-- \`circle\` and \`arc\` for reticles;
-- \`text\` only when a normal KiCad font is acceptable.
-
-Prefer geometry over a font dependency when the lettering is part of the visual identity.
-
-Do not ask the model to reproduce the whole reference in one pass. Map the board, then handle each visual family.
-
-### 3. Map image coordinates to board coordinates
-
-Choose two or more reliable landmarks from the image and board. Compute a scale and origin mapping.
-
-For axis-aligned references:
-
-\`\`\`
-x_pcb = x0 + x_image * sx
-y_pcb = y0 + y_image * sy
-\`\`\`
-
-Use an affine transform when the source has perspective or skew.
-
-Store resulting geometry in the artwork intermediate representation. Use millimetres.
-
-### 4. Write the artwork plan
-
-Create an \`artwork.json\` file that validates against \`schemas/artwork.schema.json\`.
-
-Example:
-
-\`\`\`json
-{
-  "version": 1,
-  "layer": "F.SilkS",
-  "clearance_mm": 0.16,
-  "items": [
-    {
-      "id": "edge-hatch",
-      "type": "hatching",
-      "region": [2.0, 2.0, 14.0, 4.5],
-      "angle_deg": 55,
-      "bar_width_mm": 0.42,
-      "spacing_mm": 0.68
-    },
-    {
-      "id": "ecg",
-      "type": "polyline",
-      "width_mm": 0.25,
-      "points": [[3, 29], [9, 29], [10, 27.1], [11, 30.0], [12, 29]]
-    }
-  ]
-}
-\`\`\`
-
-Run:
-
-\`\`\`bash
-python scripts/validate_artwork.py artwork.json
-\`\`\`
-
-### 5. Protect the board
-
-Build protected geometry from the real board.
-
-At minimum protect:
-
-- solder-mask openings;
-- drills and slots;
-- the board exterior;
-- any explicit user keepout.
-
-Use the requested clearance. When none exists, use a conservative value and state it.
-
-Clip desired artwork against the protected geometry:
-
-\`\`\`
-safe_artwork = desired_artwork - buffer(protected_geometry, clearance)
-\`\`\`
-
-Run:
-
-\`\`\`bash
-python scripts/clip_artwork.py \
-  --board <board.kicad_pcb> \
-  --artwork artwork.json \
-  --output artwork-clipped.json
-\`\`\`
-
-Review removed areas instead of silently restoring them.
-
-### 6. Patch a copy of the board
-
-Write only generated silkscreen objects.
-
-Run:
-
-\`\`\`bash
-python scripts/patch_kicad.py \
-  --board <board.kicad_pcb> \
-  --artwork artwork-clipped.json \
-  --output <new-board.kicad_pcb>
-\`\`\`
-
-The patcher must not alter unrelated board data.
-
-### 7. Validate
-
-Run the repository checks:
-
-\`\`\`bash
-python scripts/validate_artwork.py artwork-clipped.json
-python -m pytest
-\`\`\`
-
-When KiCad CLI is installed, export Gerbers from the resulting board and inspect the produced silkscreen layer. Compare the generated Gerber geometry with the intended artwork instead of relying on a screenshot of the PCB editor.
-
-Then open the project in KiCad and run DRC.
-
-### 8. Report changes with boundaries
-
-State which layer changed.
-
-State which manufacturing and electrical layers remained unchanged.
-
-Call out any differences from the reference that came from board constraints.
-
-If KiCad DRC, ERC, schematic comparison, or Gerber review did not run, say so.
-
-## Working style
-
-Use the model for visual interpretation and decomposition. Use code for coordinates, repetition, clipping, serialization, and validation.
-
-Keep every generated element reproducible from \`artwork.json\`.
-
-Preserve revision truth. If the reference says \`r5\` but the edited board is \`r10\`, do not copy the stale revision unless the user asks for it.
-
-Prefer a small number of documented rules over hand-tuned coordinates spread through the PCB file.
+The width audit checks the UNION of serialized polygons. It flags potential
+small-feature loss, leaves ink unchanged and reports `review_required` or
+`heuristic_passed`; neither certifies printable minimum width. `--review-svg`
+shows suspect regions in red in model space, not an actual Gerber export.
+Text height, minimum negative gap and process registration remain unchecked.
+See `references/manufacturing-profile.md` for sources and remaining limits.
+Supplier confirmation and an actual calibration sample are still needed.
+A configured clearance of 0.16 mm is an example, not a fabrication guarantee.
+Do not call an output production-ready without supplier requirements and all
+required external checks. Preserve revision labels from the actual target board.

@@ -1,0 +1,45 @@
+{
+  "kicad_cli_version": "10.0.5",
+  "version_and_help_checked_on": "2026-09-30",
+  "fixture_file_version": "20241229",
+  "drc_args": [
+    "pcb",
+    "drc",
+    "--format",
+    "json",
+    "--units",
+    "mm",
+    "--severity-all",
+    "--output",
+    "{report}",
+    "{board}"
+  ],
+  "gerber_args": [
+    "pcb",
+    "export",
+    "gerbers",
+    "--layers",
+    "F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts",
+    "--precision",
+    "6",
+    "--output",
+    "{directory}",
+    "{board}"
+  ],
+  "gerber_mask_subtraction": false,
+  "drill_args": [
+    "pcb",
+    "export",
+    "drill",
+    "--format",
+    "excellon",
+    "--drill-origin",
+    "absolute",
+    "--excellon-units",
+    "mm",
+    "--output",
+    "{directory}",
+    "{board}"
+  ],
+  "purpose": "Frozen CLI configuration, not an execution result; actual checks live in docs/verification/*/evidence.json."
+}

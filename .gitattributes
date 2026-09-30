@@ -1,0 +1,2 @@
+# Preserve intentional Markdown hard breaks in the archived specification.
+docs/plans/geometry-pipeline-spec.md whitespace=-blank-at-eol

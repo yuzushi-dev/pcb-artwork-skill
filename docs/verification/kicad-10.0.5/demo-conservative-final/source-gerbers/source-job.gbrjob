@@ -1,0 +1,96 @@
+{
+  "Header": {
+    "GenerationSoftware": {
+      "Vendor": "KiCad",
+      "Application": "Pcbnew",
+      "Version": "10.0.5"
+    },
+    "CreationDate": "2026-09-30T10:35:10+00:00"
+  },
+  "GeneralSpecs": {
+    "ProjectId": {
+      "Name": "source",
+      "GUID": "736f7572-6365-42e6-9b69-6361645f7063",
+      "Revision": "rev?"
+    },
+    "Size": {
+      "X": 10.05,
+      "Y": 10.05
+    },
+    "LayerNumber": 2,
+    "BoardThickness": 1.6,
+    "Finish": "None"
+  },
+  "DesignRules": [
+    {
+      "Layers": "Outer",
+      "PadToPad": 0.2,
+      "PadToTrack": 0.2,
+      "TrackToTrack": 0.2
+    }
+  ],
+  "FilesAttributes": [
+    {
+      "Path": "source-f_silkscreen.gto",
+      "FileFunction": "Legend,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "source-b_silkscreen.gbo",
+      "FileFunction": "Legend,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "source-F_Mask.gts",
+      "FileFunction": "SolderMask,Top",
+      "FilePolarity": "Negative"
+    },
+    {
+      "Path": "source-B_Mask.gbs",
+      "FileFunction": "SolderMask,Bot",
+      "FilePolarity": "Negative"
+    },
+    {
+      "Path": "source-Edge_Cuts.gm1",
+      "FileFunction": "Profile",
+      "FilePolarity": "Positive"
+    }
+  ],
+  "MaterialStackup": [
+    {
+      "Type": "Legend",
+      "Name": "Top Silk Screen"
+    },
+    {
+      "Type": "SolderMask",
+      "Thickness": 0.01,
+      "Name": "Top Solder Mask"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "F.Cu"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 1.51,
+      "Material": "FR4",
+      "Name": "F.Cu/B.Cu",
+      "Notes": "Type: dielectric layer 1 (from F.Cu to B.Cu)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "B.Cu"
+    },
+    {
+      "Type": "SolderMask",
+      "Thickness": 0.01,
+      "Name": "Bottom Solder Mask"
+    },
+    {
+      "Type": "Legend",
+      "Name": "Bottom Silk Screen"
+    }
+  ]
+}

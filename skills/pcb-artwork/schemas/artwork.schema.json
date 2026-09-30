@@ -1,1 +1,178 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"PCB artwork intermediate representation","type":"object","required":["version","layer","items"],"properties":{"version":{"const":1},"layer":{"enum":["F.SilkS","B.SilkS"]},"clearance_mm":{"type":"number","minimum":0},"items":{"type":"array","items":{"type":"object","required":["id","type"],"properties":{"id":{"type":"string","minLength":1},"type":{"enum":["polygon","polyline","rect","hatching"]},"points":{"type":"array"},"region":{"type":"array"},"width_mm":{"type":"number"},"angle_deg":{"type":"number"},"bar_width_mm":{"type":"number"},"spacing_mm":{"type":"number"}}}}}}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCB artwork input v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "layer",
+    "items"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "layer": {
+      "enum": [
+        "F.SilkS",
+        "B.SilkS"
+      ]
+    },
+    "clearance_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "points"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "const": "polygon"
+              },
+              "points": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "minItems": 3,
+                "maxItems": 100000
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "points",
+              "width_mm"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "const": "polyline"
+              },
+              "points": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "minItems": 2,
+                "maxItems": 100000
+              },
+              "width_mm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "region"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "const": "rect"
+              },
+              "region": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "region",
+              "bar_width_mm",
+              "spacing_mm"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "const": "hatching"
+              },
+              "region": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "angle_deg": {
+                "type": "number"
+              },
+              "bar_width_mm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "spacing_mm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

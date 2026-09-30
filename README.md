@@ -51,6 +51,10 @@ Gerber + validation
 
 The reference controls the composition. The board controls where ink can exist.
 
+The compiler reads the board, expands and clips the original artwork plan, and
+writes a PCB copy in one invocation. Unsupported protected geometry blocks the
+operation. See [supported geometry, verification and v1 migration](docs/plans/geometry-pipeline.md).
+
 For desired artwork `S` and protected board geometry `K`:
 
 ```text
@@ -71,6 +75,13 @@ The agent should describe the artwork in the intermediate representation instead
 - reproducible generated artwork
 - validation before Gerber review
 
+Supported board file token: `20241229`, verified on KiCad CLI 10.0.5. See the
+[supported subset](references/supported-geometry.md). The default conservative profile targets 0.20 mm
+silkscreen strokes and at least 0.25 mm mask/drill clearance. A post-clipping width heuristic
+flags suspect details; supplier compliance is still not certified. See the
+[manufacturing profile](references/manufacturing-profile.md) and
+[calibration coupon](docs/calibration.md).
+
 The electrical design stays outside the artwork pipeline. The skill does not move footprints, tracks, vias, zones, pads, nets, drills, or the board outline unless the user asks for a board change.
 
 ## Install
@@ -86,7 +97,9 @@ The repository exposes the installable skill at `skills/pcb-artwork/`, including
 The skill needs Python 3.11 or newer. Its geometry helpers use Shapely and JSON Schema:
 
 ```bash
-python -m pip install "shapely>=2,<3" "jsonschema>=4.22,<5"
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install "shapely>=2.1,<3" "jsonschema>=4.22,<5"
 ```
 
 ## Use
@@ -103,23 +116,24 @@ Write and validate an `artwork.json` plan:
 python scripts/validate_artwork.py artwork.json
 ```
 
-Compile the artwork against the board:
+Compile and write the PCB copy:
 
 ```bash
-python scripts/clip_artwork.py \
+python scripts/compile_artwork.py \
   --board board.kicad_pcb \
   --artwork artwork.json \
-  --output artwork-clipped.json
+  --output board-artwork.kicad_pcb \
+  --report artwork-report.json \
+  --review-svg review.svg
 ```
 
-Write the compiled polygons into a copy of the PCB:
+`clip_artwork.py` and `patch_kicad.py` are compatibility aliases for the same
+operation. Both now take the **original artwork plan** and output a PCB copy.
+Use `--manufacturing-profile geometry-only` to explicitly retain the previous
+clearance behavior without the manufacturing audit.
 
-```bash
-python scripts/patch_kicad.py \
-  --board board.kicad_pcb \
-  --artwork artwork-clipped.json \
-  --output board-artwork.kicad_pcb
-```
+There is no compiled JSON handoff or input-hash protocol. Legacy compiled JSON
+with `meta` must be replaced by its original plan.
 
 Then open the result in KiCad, run DRC, export the Gerbers, and inspect the manufactured layers rather than relying on the PCB editor preview.
 
@@ -153,35 +167,29 @@ A design instruction stays small enough to inspect:
 
 This boundary keeps visual reasoning readable and leaves repetition, clipping, and serialization to code.
 
+Coordinates and widths use millimetres. `spacing_mm` denotes centre-to-centre
+hatch pitch; `angle_deg` defaults to 0 when omitted.
+See the migration note for required fields, rejected inputs and resource limits.
+
+## Local verification
+
+In Bash, create and activate the environment first (or reuse the one from Setup):
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-test.txt
+python -m pytest -q
+python scripts/verify_bundle.py
+```
+
 ## Repository structure
 
-```text
-.
-├── SKILL.md
-├── README.md
-├── LICENSE
-├── pyproject.toml
-├── assets/
-│   └── pcb-artwork-skill-mark.png
-├── skills/
-│   └── pcb-artwork/
-│       ├── SKILL.md
-│       ├── schemas/
-│       │   └── artwork.schema.json
-│       ├── scripts/
-│       │   ├── inspect_board.py
-│       │   ├── clip_artwork.py
-│       │   ├── patch_kicad.py
-│       │   └── validate_artwork.py
-│       └── references/
-│           ├── workflow.md
-│           └── geometry-rules.md
-├── schemas/                 Development copy
-├── scripts/                 Development copy
-├── references/              Development copy
-└── tests/
-    └── test_geometry.py
-```
+The installable bundle lives in `skills/pcb-artwork/`: `SKILL.md`, schema,
+references, scripts and the runtime `lib/` modules. Root scripts are development
+entry points; schema and skill copies are checked by `scripts/verify_bundle.py`.
+`tests/` covers geometry, safe patching and CLI behavior. Real KiCad exports and
+rerun instructions live in [docs/verification](docs/verification/README.md).
 
 ## License
 

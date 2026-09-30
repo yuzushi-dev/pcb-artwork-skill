@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "layer": "F.SilkS",
+  "clearance_mm": 0.16,
+  "items": [
+    {"id": "field", "type": "polygon", "points": [[3, 3], [7, 3], [7, 7], [3, 7]]},
+    {"id": "hatch", "type": "hatching", "region": [0.5, 0.5, 9.5, 2.5], "angle_deg": 55, "bar_width_mm": 0.2, "spacing_mm": 0.7},
+    {"id": "trace", "type": "polyline", "points": [[1, 8], [4, 8], [5, 5], [6, 8], [9, 8]], "width_mm": 0.25}
+  ]
+}

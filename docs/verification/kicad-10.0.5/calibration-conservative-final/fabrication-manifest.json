@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "fabrication_export": true,
+  "purpose": "calibration",
+  "factory_approved": false,
+  "order_authorized": false,
+  "kicad_cli_version": "10.0.5",
+  "source_board": "modified.kicad_pcb",
+  "layers": [
+    "F.Cu",
+    "B.Cu",
+    "F.Mask",
+    "B.Mask",
+    "F.SilkS",
+    "B.SilkS",
+    "Edge.Cuts"
+  ],
+  "drill_format": "Excellon",
+  "note": "Calibration output only; this is not factory CAM approval or authorization to order boards.",
+  "archive": {
+    "file": "fabrication-gerbers.zip",
+    "sha256": "2e7ccd75da2a8f52d9bc21a4cb2de48b51cec789ac76236d24789c253d35c245",
+    "contents": 9,
+    "path_mode": "relative basenames"
+  },
+  "outputs": [
+    {
+      "file": "fabrication-gerbers/calibration-modified-B_Cu.gbl",
+      "sha256": "4198557aba9bf18f8897035541d46962ef64d84a21f2ead268c27b7b19f59514"
+    },
+    {
+      "file": "fabrication-gerbers/calibration-modified-B_Mask.gbs",
+      "sha256": "954770df80f31188cb1a51d12a5521c48dafabaf80f228d6ac66acbc9154af1c"
+    },
+    {
+      "file": "fabrication-gerbers/calibration-modified-Edge_Cuts.gm1",
+      "sha256": "a677f5b8f752bf653881bfda7f0151eee1311397f4ab830913261aaa85518e39"
+    },
+    {
+      "file": "fabrication-gerbers/calibration-modified-F_Cu.gtl",
+      "sha256": "364cd04746a9e8e2fff817c10085cc97ffa9c03abba0411fb285ce981a87e7ef"
+    },
+    {
+      "file": "fabrication-gerbers/calibration-modified-F_Mask.gts",
+      "sha256": "0fe95114b213e4e2c9bf3fde083c425b03c8bc410f574f70d0761c358a131606"
+    },
+    {
+      "file": "fabrication-gerbers/calibration-modified-b_silkscreen.gbo",
+      "sha256": "3793b19dc1c6853896cca6dc917b51070e863f29de86c6fe3cb1f88318bb816d"
+    },
+    {
+      "file": "fabrication-gerbers/calibration-modified-f_silkscreen.gto",
+      "sha256": "51d681c75abb160d519aa06ae08b1b9cbdf358508660e9caf4366786bbb5c550"
+    },
+    {
+      "file": "fabrication-gerbers/calibration-modified-job.gbrjob",
+      "sha256": "70d0804cddd835882aa4abc4ee286abd6dd4b873cc2d440b3a3853e294b33215"
+    },
+    {
+      "file": "fabrication-gerbers/calibration-modified.drl",
+      "sha256": "d70041950634b2a6ff61407482fd60d62f9aa238f76296a1f57971f64b4bd5e6"
+    }
+  ]
+}

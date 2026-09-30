@@ -1,0 +1,266 @@
+{
+  "checks": {
+    "drc": "passed",
+    "drill_export": "passed",
+    "fixture_loading": "passed",
+    "gerber_export": "passed",
+    "minimum_silk_width": "review_required",
+    "visual_review": "passed"
+  },
+  "drc_comparison": {
+    "modified_violations": [
+      {
+        "description": "The current configuration does not include the footprint library 'Synthetic'",
+        "items": [
+          {
+            "description": "Footprint <no reference designator>",
+            "position_mm": [
+              30.0,
+              20.0
+            ]
+          }
+        ],
+        "severity": "warning",
+        "type": "lib_footprint_issues"
+      }
+    ],
+    "new_violations": [],
+    "passed": true,
+    "source_violations": [
+      {
+        "description": "The current configuration does not include the footprint library 'Synthetic'",
+        "items": [
+          {
+            "description": "Footprint <no reference designator>",
+            "position_mm": [
+              30.0,
+              20.0
+            ]
+          }
+        ],
+        "severity": "warning",
+        "type": "lib_footprint_issues"
+      }
+    ]
+  },
+  "export_settings": {
+    "drc_severities": "all",
+    "drc_units": "mm",
+    "layers": [
+      "F.SilkS",
+      "B.SilkS",
+      "F.Mask",
+      "B.Mask",
+      "Edge.Cuts"
+    ],
+    "mask_subtraction": false,
+    "precision": 6
+  },
+  "ignored_checks": {
+    "modified": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ],
+    "source": [
+      {
+        "description": "Footprint has no courtyard defined",
+        "key": "missing_courtyard"
+      },
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      },
+      {
+        "description": "Footprint component type doesn't match footprint pads",
+        "key": "footprint_type_mismatch"
+      }
+    ]
+  },
+  "inputs": {
+    "artwork": "calibration.json",
+    "board": "calibration.kicad_pcb"
+  },
+  "kicad_cli_version": "10.0.5",
+  "outputs": {
+    "compile_report": {
+      "file": "compile-report.json",
+      "sha256": "173d0d634013a68a73a5e69daafc26d236840a0981ac3a698a82de2a0ca4fce3"
+    },
+    "drc": {
+      "modified": {
+        "file": "modified.drc.json",
+        "sha256": "805bc913c6f9c10f55b2f5f02a17dc768f8bc3b009510e5e4989bff95bcb9aa4"
+      },
+      "source": {
+        "file": "source.drc.json",
+        "sha256": "a125ba8976f7aadfe29258c402e0646c8f11f6b69a3bda35e8ad9d2c438909e0"
+      }
+    },
+    "drills": {
+      "modified": [
+        {
+          "file": "modified-gerbers/modified.drl",
+          "sha256": "0905d2f4d29a56c42c97a12d5c53ea13216d13a08dec93bf3a46c8dfd6407182"
+        }
+      ],
+      "source": [
+        {
+          "file": "source-gerbers/source.drl",
+          "sha256": "c6c07576588f24cb6262ca659ab3c51f436f8c09e72f95eb98f28059c41d8acc"
+        }
+      ]
+    },
+    "gerbers": {
+      "modified": {
+        "B.Mask": {
+          "file": "modified-gerbers/modified-B_Mask.gbs",
+          "sha256": "bdc65143dd45f29637e74c046796328872ae2c20255db2d0132303209b12d17b"
+        },
+        "B.SilkS": {
+          "file": "modified-gerbers/modified-b_silkscreen.gbo",
+          "sha256": "808241d087b322c86b916ebf7f913b2b19f300e67494f839f92fd1d8a26b5ac1"
+        },
+        "Edge.Cuts": {
+          "file": "modified-gerbers/modified-Edge_Cuts.gm1",
+          "sha256": "8bbf797d0be37c7a944b57ecd5bea122a18025d4d9dd11ae01473341ee8f116c"
+        },
+        "F.Mask": {
+          "file": "modified-gerbers/modified-F_Mask.gts",
+          "sha256": "9703a7f8390e68a655835f3ff4dfaf0df9b571604c2d0fbe2ddfb168f188101e"
+        },
+        "F.SilkS": {
+          "file": "modified-gerbers/modified-f_silkscreen.gto",
+          "sha256": "c363425bebfe11f8d58d20b5a39382765fc3ea994522db21f2604080e2a31fba"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "source-gerbers/source-B_Mask.gbs",
+          "sha256": "1b5ca942ac3ab7b6c08caa753051c7fc5cdbce408f3e6b7e613dbb8124bc2146"
+        },
+        "B.SilkS": {
+          "file": "source-gerbers/source-b_silkscreen.gbo",
+          "sha256": "05e3ce68effec344df88b54cadbf03f0640391e1346bf6ca177ca0d036ebf7f2"
+        },
+        "Edge.Cuts": {
+          "file": "source-gerbers/source-Edge_Cuts.gm1",
+          "sha256": "558748ee44c0a481d43b68eb02418262f38dac4725c3a6191da574a723c77c73"
+        },
+        "F.Mask": {
+          "file": "source-gerbers/source-F_Mask.gts",
+          "sha256": "beaf50b71ca83b5dccd9c46625ef843e60abfba3dbd50debe9422f594a5a6a07"
+        },
+        "F.SilkS": {
+          "file": "source-gerbers/source-f_silkscreen.gto",
+          "sha256": "d61bf6aa37eee4c5b64649b8ad9ae1199b59a1dd552095d80ae097bb902da96a"
+        }
+      }
+    },
+    "manufacturing_review": {
+      "file": "manufacturing-review.svg",
+      "sha256": "94b8522aa5ccec320963eaca37af159a5d1e0d236e6322b5ea954ed8ffb5a1a3"
+    },
+    "modified_board": {
+      "file": "modified.kicad_pcb",
+      "sha256": "18b25fca57e7b3d9c20507764d70c4c4faecf11c46412041e3efedef3232ec56"
+    },
+    "previews": {
+      "modified": {
+        "B.Mask": {
+          "file": "previews/modified-B_Mask.svg",
+          "sha256": "ca137a63d1cdfdcf4dca01e1e62af19b6d396d9d7ff3e167f927b7189dd966aa"
+        },
+        "B.SilkS": {
+          "file": "previews/modified-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/modified-Edge_Cuts.svg",
+          "sha256": "30b448a538540e2fcef099c813586d9c4dec241a5c15c55397f25eb86e3e07f7"
+        },
+        "F.Mask": {
+          "file": "previews/modified-F_Mask.svg",
+          "sha256": "ca137a63d1cdfdcf4dca01e1e62af19b6d396d9d7ff3e167f927b7189dd966aa"
+        },
+        "F.SilkS": {
+          "file": "previews/modified-F_SilkS.svg",
+          "sha256": "c1240bdab475af9e83699896fde9a571755af3d2ecc3d1dc9c23a285535fa3e3"
+        }
+      },
+      "source": {
+        "B.Mask": {
+          "file": "previews/source-B_Mask.svg",
+          "sha256": "ca137a63d1cdfdcf4dca01e1e62af19b6d396d9d7ff3e167f927b7189dd966aa"
+        },
+        "B.SilkS": {
+          "file": "previews/source-B_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        },
+        "Edge.Cuts": {
+          "file": "previews/source-Edge_Cuts.svg",
+          "sha256": "30b448a538540e2fcef099c813586d9c4dec241a5c15c55397f25eb86e3e07f7"
+        },
+        "F.Mask": {
+          "file": "previews/source-F_Mask.svg",
+          "sha256": "ca137a63d1cdfdcf4dca01e1e62af19b6d396d9d7ff3e167f927b7189dd966aa"
+        },
+        "F.SilkS": {
+          "file": "previews/source-F_SilkS.svg",
+          "sha256": "66108f6adc0c06b4531719ea0ae13d26b8fe2590ffedc93aa0b1eef0c6dfce52"
+        }
+      }
+    },
+    "review_previews": {
+      "manufacturing-review.png": {
+        "file": "previews/manufacturing-review.png",
+        "sha256": "2e63f9cc672090ec51ab808c30bc33a304a0f3e425c319d39809f80c39c072f3"
+      },
+      "overlay-F.png": {
+        "file": "previews/overlay-F.png",
+        "sha256": "8ed9797612611bcc5154c685f8aa2de8e38fe223e2e235bf05d3537f0765761b"
+      },
+      "overlay-F.svg": {
+        "file": "previews/overlay-F.svg",
+        "sha256": "bbffddf0a50bc33d30632cc419d818af5917fb2a1c70369f53a904e9b26e3a0e"
+      }
+    }
+  },
+  "version": 1,
+  "visual_review": {
+    "method": "Coding-agent visual inspection of actual exported front Gerber union over supported board area and Excellon holes, plus model-space manufacturing diagnostics.",
+    "result": "Clearance and pad/drill clipping appear consistent. Red model-space warnings correspond to small ink details. Physical printing remains untested.",
+    "reviewed_layers": [
+      "F.SilkS",
+      "F.Mask",
+      "Edge.Cuts",
+      "Excellon"
+    ],
+    "reviewer": "coding agent"
+  }
+}

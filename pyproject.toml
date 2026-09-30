@@ -1,11 +1,11 @@
 [project]
 name = "pcb-artwork-skill"
-version = "0.1.0"
+version = "0.2.0"
 description = "Deterministic geometry helpers for production-aware KiCad silkscreen artwork."
 requires-python = ">=3.11"
 license = {text = "MIT"}
 dependencies = [
-  "shapely>=2.0,<3",
+  "shapely>=2.1,<3",
   "jsonschema>=4.22,<5"
 ]
 

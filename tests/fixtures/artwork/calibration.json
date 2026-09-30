@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "layer": "F.SilkS",
+  "clearance_mm": 0.25,
+  "items": [
+    {"id": "line-0.10", "type": "polyline", "points": [[4, 4], [24, 4]], "width_mm": 0.10},
+    {"id": "line-0.15", "type": "polyline", "points": [[4, 6], [24, 6]], "width_mm": 0.15},
+    {"id": "line-0.20", "type": "polyline", "points": [[4, 8], [24, 8]], "width_mm": 0.20},
+    {"id": "line-0.25", "type": "polyline", "points": [[4, 10], [24, 10]], "width_mm": 0.25},
+    {"id": "line-0.30", "type": "polyline", "points": [[4, 12], [24, 12]], "width_mm": 0.30},
+
+    {"id": "hatch-0.15-gap-0.15", "type": "hatching", "region": [4, 16, 20, 19], "angle_deg": 0, "bar_width_mm": 0.15, "spacing_mm": 0.30},
+    {"id": "hatch-0.20-gap-0.20", "type": "hatching", "region": [4, 21, 20, 24], "angle_deg": 0, "bar_width_mm": 0.20, "spacing_mm": 0.40},
+    {"id": "hatch-0.25-gap-0.25", "type": "hatching", "region": [4, 26, 20, 29], "angle_deg": 0, "bar_width_mm": 0.25, "spacing_mm": 0.50},
+
+    {"id": "gap-0.10-left", "type": "polyline", "points": [[36, 17], [45, 17]], "width_mm": 0.20},
+    {"id": "gap-0.10-right", "type": "polyline", "points": [[45.10, 17], [55, 17]], "width_mm": 0.20},
+    {"id": "gap-0.15-left", "type": "polyline", "points": [[36, 20], [45, 20]], "width_mm": 0.20},
+    {"id": "gap-0.15-right", "type": "polyline", "points": [[45.15, 20], [55, 20]], "width_mm": 0.20},
+    {"id": "gap-0.20-left", "type": "polyline", "points": [[36, 23], [45, 23]], "width_mm": 0.20},
+    {"id": "gap-0.20-right", "type": "polyline", "points": [[45.20, 23], [55, 23]], "width_mm": 0.20},
+    {"id": "gap-0.25-left", "type": "polyline", "points": [[36, 26], [45, 26]], "width_mm": 0.20},
+    {"id": "gap-0.25-right", "type": "polyline", "points": [[45.25, 26], [55, 26]], "width_mm": 0.20},
+    {"id": "gap-0.30-left", "type": "polyline", "points": [[36, 29], [45, 29]], "width_mm": 0.20},
+    {"id": "gap-0.30-right", "type": "polyline", "points": [[45.30, 29], [55, 29]], "width_mm": 0.20},
+
+    {"id": "letter-e-height-0.8", "type": "polygon", "points": [[46, 4], [46.48, 4], [46.48, 4.12], [46.13, 4.12], [46.13, 4.34], [46.42, 4.34], [46.42, 4.46], [46.13, 4.46], [46.13, 4.68], [46.48, 4.68], [46.48, 4.8], [46, 4.8]]},
+    {"id": "letter-e-height-1.0", "type": "polygon", "points": [[49, 4], [49.6, 4], [49.6, 4.15], [49.16, 4.15], [49.16, 4.42], [49.53, 4.42], [49.53, 4.57], [49.16, 4.57], [49.16, 4.85], [49.6, 4.85], [49.6, 5], [49, 5]]},
+    {"id": "letter-e-height-1.2", "type": "polygon", "points": [[52, 4], [52.72, 4], [52.72, 4.18], [52.19, 4.18], [52.19, 4.50], [52.64, 4.50], [52.64, 4.68], [52.19, 4.68], [52.19, 5.02], [52.72, 5.02], [52.72, 5.2], [52, 5.2]]},
+
+    {"id": "pad-clipping-neck", "type": "polygon", "points": [[24, 21.6], [27, 21.6], [27, 21.9], [33, 21.9], [33, 21.6], [36, 21.6], [36, 23.1], [33, 23.1], [33, 22.8], [27, 22.8], [27, 23.1], [24, 23.1]]}
+  ]
+}

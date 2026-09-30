@@ -1,0 +1,96 @@
+{
+  "Header": {
+    "GenerationSoftware": {
+      "Vendor": "KiCad",
+      "Application": "Pcbnew",
+      "Version": "10.0.5"
+    },
+    "CreationDate": "2026-09-30T10:36:17+00:00"
+  },
+  "GeneralSpecs": {
+    "ProjectId": {
+      "Name": "modified",
+      "GUID": "6d6f6469-6669-4656-942e-6b696361645f",
+      "Revision": "rev?"
+    },
+    "Size": {
+      "X": 60.05,
+      "Y": 40.05
+    },
+    "LayerNumber": 2,
+    "BoardThickness": 1.6,
+    "Finish": "None"
+  },
+  "DesignRules": [
+    {
+      "Layers": "Outer",
+      "PadToPad": 0.2,
+      "PadToTrack": 0.2,
+      "TrackToTrack": 0.2
+    }
+  ],
+  "FilesAttributes": [
+    {
+      "Path": "modified-f_silkscreen.gto",
+      "FileFunction": "Legend,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "modified-b_silkscreen.gbo",
+      "FileFunction": "Legend,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "modified-F_Mask.gts",
+      "FileFunction": "SolderMask,Top",
+      "FilePolarity": "Negative"
+    },
+    {
+      "Path": "modified-B_Mask.gbs",
+      "FileFunction": "SolderMask,Bot",
+      "FilePolarity": "Negative"
+    },
+    {
+      "Path": "modified-Edge_Cuts.gm1",
+      "FileFunction": "Profile",
+      "FilePolarity": "Positive"
+    }
+  ],
+  "MaterialStackup": [
+    {
+      "Type": "Legend",
+      "Name": "Top Silk Screen"
+    },
+    {
+      "Type": "SolderMask",
+      "Thickness": 0.01,
+      "Name": "Top Solder Mask"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "F.Cu"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 1.51,
+      "Material": "FR4",
+      "Name": "F.Cu/B.Cu",
+      "Notes": "Type: dielectric layer 1 (from F.Cu to B.Cu)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "B.Cu"
+    },
+    {
+      "Type": "SolderMask",
+      "Thickness": 0.01,
+      "Name": "Bottom Solder Mask"
+    },
+    {
+      "Type": "Legend",
+      "Name": "Bottom Silk Screen"
+    }
+  ]
+}

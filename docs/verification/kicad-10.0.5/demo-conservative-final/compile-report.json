@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "input_validation": "passed",
+  "geometry": "passed",
+  "minimum_width": "review_required",
+  "requested_clearance_mm": 0.16,
+  "layer": "F.SilkS",
+  "clearance_mm": 0.25,
+  "edge_margin_mm": 0.25,
+  "curve_error_mm": 0.001,
+  "input_area_mm2": 23.122974,
+  "serialized_area_mm2": 17.376865,
+  "removed": {
+    "total": 0,
+    "source_ids": [
+      "field",
+      "trace"
+    ],
+    "fragments": 16,
+    "areas_mm2": {
+      "field": 5.746108,
+      "trace": 0.675247
+    },
+    "empty": 0,
+    "non_area": {
+      "total": 0,
+      "types": {}
+    }
+  },
+  "manufacturing": {
+    "status": "review_required",
+    "minimum_width": "review_required",
+    "method": "mitre morphological opening",
+    "min_line_width_mm": 0.2,
+    "tolerance_mm": 2e-05,
+    "feature_loss_area_floor_mm2": 4.000000000000001e-06,
+    "inspected_area_mm2": 17.376865345,
+    "input": {
+      "polygon_count": 14,
+      "vertex_count": 653,
+      "union_component_count": 14
+    },
+    "checks": {
+      "eroded_empty_components": 2,
+      "eroded_component_splits": 0,
+      "opening_feature_loss": 2,
+      "opening_residue_ignored": 20,
+      "minimum_gap": "not_checked",
+      "text_height": "not_checked"
+    },
+    "diagnostics": {
+      "total": 2,
+      "returned": 2,
+      "truncated": false,
+      "features": [
+        {
+          "area_mm2": 0.027161522,
+          "bounds_mm": [
+            0.5,
+            2.221466,
+            0.695032,
+            2.5
+          ]
+        },
+        {
+          "area_mm2": 0.027161522,
+          "bounds_mm": [
+            9.304968,
+            0.5,
+            9.5,
+            0.778534
+          ]
+        }
+      ]
+    },
+    "limitations": [
+      "This morphology test is heuristic and cannot prove every local line width.",
+      "It is not a manufacturing certification or provider CAM approval.",
+      "Minimum negative-space gaps and text height are not checked.",
+      "Process registration, ink behavior, materials, and CAM edits are not modeled."
+    ],
+    "profile": {
+      "name": "conservative",
+      "source_snapshot_date": "2026-09-30",
+      "min_line_width_mm": 0.2,
+      "min_mask_clearance_mm": 0.25,
+      "min_text_height_mm": 1.0,
+      "sources": [
+        {
+          "provider": "JLCPCB",
+          "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+        },
+        {
+          "provider": "JLCPCB",
+          "url": "https://jlcpcb.com/blog/pcb-silkscreen"
+        },
+        {
+          "provider": "PCBWay",
+          "url": "https://www.pcbway.com/capabilities.html"
+        }
+      ],
+      "caveats": [
+        "Text height is guidance only because artwork geometry has no text semantics.",
+        "The 0.25 mm mask clearance is an engineering extension based on JLCPCB guidance; it is not a verified PCBWay requirement."
+      ]
+    },
+    "text_height": "not_checked",
+    "text_height_reason": "input contains geometry without text semantics"
+  },
+  "output_written": true,
+  "existing_output_preserved": false,
+  "board_file_version": "20241229",
+  "manufacturing_requirements": "conservative engineering profile; supplier confirmation required",
+  "checks": {
+    "kicad_loading": "not_run",
+    "drc": "not_run",
+    "gerber_export": "not_run",
+    "visual_review": "not_run"
+  }
+}

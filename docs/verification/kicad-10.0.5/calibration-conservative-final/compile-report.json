@@ -1,0 +1,262 @@
+{
+  "status": "passed",
+  "input_validation": "passed",
+  "geometry": "passed",
+  "minimum_width": "review_required",
+  "requested_clearance_mm": 0.25,
+  "layer": "F.SilkS",
+  "clearance_mm": 0.25,
+  "edge_margin_mm": 0.25,
+  "curve_error_mm": 0.001,
+  "input_area_mm2": 124.6701,
+  "serialized_area_mm2": 123.815944,
+  "removed": {
+    "total": 0,
+    "source_ids": [
+      "pad-clipping-neck"
+    ],
+    "fragments": 44,
+    "areas_mm2": {
+      "pad-clipping-neck": 0.854156
+    },
+    "empty": 0,
+    "non_area": {
+      "total": 0,
+      "types": {}
+    }
+  },
+  "manufacturing": {
+    "status": "review_required",
+    "minimum_width": "review_required",
+    "method": "mitre morphological opening",
+    "min_line_width_mm": 0.2,
+    "tolerance_mm": 2e-05,
+    "feature_loss_area_floor_mm2": 4.000000000000001e-06,
+    "inspected_area_mm2": 123.815943715,
+    "input": {
+      "polygon_count": 43,
+      "vertex_count": 414,
+      "union_component_count": 43
+    },
+    "checks": {
+      "eroded_empty_components": 18,
+      "eroded_component_splits": 0,
+      "opening_feature_loss": 18,
+      "opening_residue_ignored": 15,
+      "minimum_gap": "not_checked",
+      "text_height": "not_checked"
+    },
+    "diagnostics": {
+      "total": 18,
+      "returned": 18,
+      "truncated": false,
+      "features": [
+        {
+          "area_mm2": 2.0,
+          "bounds_mm": [
+            4.0,
+            3.95,
+            24.0,
+            4.05
+          ]
+        },
+        {
+          "area_mm2": 3.0,
+          "bounds_mm": [
+            4.0,
+            5.925,
+            24.0,
+            6.075
+          ]
+        },
+        {
+          "area_mm2": 1.2,
+          "bounds_mm": [
+            4.0,
+            16.0,
+            20.0,
+            16.075
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            16.225,
+            20.0,
+            16.375
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            16.525,
+            20.0,
+            16.675
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            16.825,
+            20.0,
+            16.975
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            17.125,
+            20.0,
+            17.275
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            17.425,
+            20.0,
+            17.575
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            17.725,
+            20.0,
+            17.875
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            18.025,
+            20.0,
+            18.175
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            18.325,
+            20.0,
+            18.475
+          ]
+        },
+        {
+          "area_mm2": 2.4,
+          "bounds_mm": [
+            4.0,
+            18.625,
+            20.0,
+            18.775
+          ]
+        },
+        {
+          "area_mm2": 1.2,
+          "bounds_mm": [
+            4.0,
+            18.925,
+            20.0,
+            19.0
+          ]
+        },
+        {
+          "area_mm2": 2.0,
+          "bounds_mm": [
+            4.0,
+            26.0,
+            20.0,
+            26.125
+          ]
+        },
+        {
+          "area_mm2": 2.0,
+          "bounds_mm": [
+            4.0,
+            28.875,
+            20.0,
+            29.0
+          ]
+        },
+        {
+          "area_mm2": 0.2228,
+          "bounds_mm": [
+            46.0,
+            4.0,
+            46.48,
+            4.8
+          ]
+        },
+        {
+          "area_mm2": 0.3475,
+          "bounds_mm": [
+            49.0,
+            4.0,
+            49.6,
+            5.0
+          ]
+        },
+        {
+          "area_mm2": 0.4998,
+          "bounds_mm": [
+            52.0,
+            4.0,
+            52.72,
+            5.2
+          ]
+        }
+      ]
+    },
+    "limitations": [
+      "This morphology test is heuristic and cannot prove every local line width.",
+      "It is not a manufacturing certification or provider CAM approval.",
+      "Minimum negative-space gaps and text height are not checked.",
+      "Process registration, ink behavior, materials, and CAM edits are not modeled."
+    ],
+    "profile": {
+      "name": "conservative",
+      "source_snapshot_date": "2026-09-30",
+      "min_line_width_mm": 0.2,
+      "min_mask_clearance_mm": 0.25,
+      "min_text_height_mm": 1.0,
+      "sources": [
+        {
+          "provider": "JLCPCB",
+          "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+        },
+        {
+          "provider": "JLCPCB",
+          "url": "https://jlcpcb.com/blog/pcb-silkscreen"
+        },
+        {
+          "provider": "PCBWay",
+          "url": "https://www.pcbway.com/capabilities.html"
+        }
+      ],
+      "caveats": [
+        "Text height is guidance only because artwork geometry has no text semantics.",
+        "The 0.25 mm mask clearance is an engineering extension based on JLCPCB guidance; it is not a verified PCBWay requirement."
+      ]
+    },
+    "text_height": "not_checked",
+    "text_height_reason": "input contains geometry without text semantics"
+  },
+  "output_written": true,
+  "existing_output_preserved": false,
+  "board_file_version": "20241229",
+  "manufacturing_requirements": "conservative engineering profile; supplier confirmation required",
+  "checks": {
+    "kicad_loading": "not_run",
+    "drc": "not_run",
+    "gerber_export": "not_run",
+    "visual_review": "not_run"
+  }
+}

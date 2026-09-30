@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "input_validation": "passed",
+  "geometry": "passed",
+  "minimum_width": "not_checked",
+  "layer": "F.SilkS",
+  "clearance_mm": 0.16,
+  "edge_margin_mm": 0.16,
+  "curve_error_mm": 0.001,
+  "input_area_mm2": 23.122974,
+  "serialized_area_mm2": 18.11631,
+  "removed": {
+    "total": 0,
+    "source_ids": [
+      "field",
+      "trace"
+    ],
+    "fragments": 16,
+    "areas_mm2": {
+      "field": 5.006663,
+      "trace": 0.630171
+    },
+    "empty": 0,
+    "non_area": {
+      "total": 0,
+      "types": {}
+    }
+  },
+  "board_file_version": "20241229",
+  "manufacturing_requirements": "unspecified",
+  "checks": {
+    "kicad_loading": "not_run",
+    "drc": "not_run",
+    "gerber_export": "not_run",
+    "visual_review": "not_run"
+  }
+}

@@ -1,0 +1,129 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-30T09:53:04",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.5",
+    "schematic_parity": [],
+    "source": "source.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0606 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 2 [<no net>] of ",
+                    "pos": {
+                        "x": 27.0,
+                        "y": 5.0
+                    },
+                    "uuid": "3d237274-481e-439e-a5cb-91ff28bbbb57"
+                }
+            ],
+            "severity": "error",
+            "type": "annular_width"
+        },
+        {
+            "description": "Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.0000 mm)",
+            "items": [
+                {
+                    "description": "Rectangle on Edge.Cuts",
+                    "pos": {
+                        "x": 0.0,
+                        "y": 0.0
+                    },
+                    "uuid": "2683f7b2-2839-465e-ab22-146af2aac844"
+                },
+                {
+                    "description": "Pad 4 [<no net>] of  on F.Cu",
+                    "pos": {
+                        "x": 9.0,
+                        "y": 1.0
+                    },
+                    "uuid": "7bad8885-48d3-43cd-8f70-5a271fe55cfe"
+                }
+            ],
+            "severity": "error",
+            "type": "copper_edge_clearance"
+        },
+        {
+            "description": "Rear solder mask aperture bridges items with different nets",
+            "items": [
+                {
+                    "description": "Pad 1 [<no net>] of  on B.Cu",
+                    "pos": {
+                        "x": 25.0,
+                        "y": 4.0
+                    },
+                    "uuid": "21df58a8-53d7-4e5f-b9ea-591d75e677a9"
+                },
+                {
+                    "description": "PTH pad 2 [<no net>] of ",
+                    "pos": {
+                        "x": 27.0,
+                        "y": 5.0
+                    },
+                    "uuid": "3d237274-481e-439e-a5cb-91ff28bbbb57"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Synthetic'",
+            "items": [
+                {
+                    "description": "Footprint <no reference designator>",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 5.0
+                    },
+                    "uuid": "803f2ba1-12f9-4531-9bf2-3a27400ade17"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        },
+        {
+            "description": "The current configuration does not include the footprint library 'Synthetic'",
+            "items": [
+                {
+                    "description": "Footprint <no reference designator>",
+                    "pos": {
+                        "x": 25.0,
+                        "y": 5.0
+                    },
+                    "uuid": "96e87c28-b750-428a-80a5-d8af53b81d8f"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_issues"
+        }
+    ]
+}
